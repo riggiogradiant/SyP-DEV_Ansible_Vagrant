@@ -1,0 +1,21 @@
+---
+- name: Actualizar sistema
+  apt:
+    update_cache: yes
+    upgrade: dist
+
+- name: Instalar herramientas básicas
+  apt:
+    name:
+      - curl
+      - git
+      - htop
+      - vim
+    state: present
+
+- name: Crear usuario para la aplicación
+  user:
+    name: webapp
+    shell: /bin/bash
+    home: /home/webapp
+    create_home: yes

@@ -1,0 +1,15 @@
+[Unit]
+Description={{ app_name }}
+After=network.target
+
+[Service]
+Type=simple
+User=webapp
+WorkingDirectory=/home/webapp/app
+ExecStart=/usr/bin/node app.js
+Restart=always
+RestartSec=10
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target

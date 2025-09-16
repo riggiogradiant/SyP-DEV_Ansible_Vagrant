@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: yes
+  vars:
+    app_name: "SYP-DEV WebApp"
+    node_version: "16"
+    
+  roles:
+    - common
+    - nginx
+    - nodejs
+    - webapp

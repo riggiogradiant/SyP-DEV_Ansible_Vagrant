@@ -1,0 +1,24 @@
+---
+- name: Instalar Nginx
+  apt:
+    name: nginx
+    state: present
+
+- name: Configurar Nginx como proxy reverso
+  template:
+    src: webapp.conf.j2
+    dest: /etc/nginx/sites-available/webapp
+  notify: restart nginx
+
+- name: Habilitar sitio webapp
+  file:
+    src: /etc/nginx/sites-available/webapp
+    dest: /etc/nginx/sites-enabled/webapp
+    state: link
+  notify: restart nginx
+
+- name: Deshabilitar sitio default
+  file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+  notify: restart nginx

@@ -1,0 +1,15 @@
+---
+- name: Instalar Node.js {{ node_version }}
+  shell: |
+    curl -fsSL https://deb.nodesource.com/setup_{{ node_version }}.x | sudo -E bash -
+    apt-get install -y nodejs
+  args:
+    creates: /usr/bin/node
+
+- name: Verificar instalación de Node.js
+  command: node --version
+  register: node_version_output
+
+- name: Mostrar versión de Node.js
+  debug:
+    msg: "Node.js instalado: {{ node_version_output.stdout }}"
