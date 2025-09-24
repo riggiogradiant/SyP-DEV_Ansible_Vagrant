@@ -1,0 +1,16 @@
+---
+- name: Instalar NGINX y desplegar página personalizada
+  hosts: localhost
+  become: yes
+  
+  roles:
+    - geerlingguy.nginx
+  
+  post_tasks:
+    - name: Copiar página web personalizada
+      copy:
+        src: index.html
+        dest: /var/www/html/index.html
+        owner: www-data
+        group: www-data
+        mode: '0644'

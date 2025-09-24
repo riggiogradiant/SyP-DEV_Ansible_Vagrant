@@ -1,0 +1,17 @@
+all:                              # Grupo raíz (todos los hosts)
+  children:                       # Define grupos hijos
+    vagrant_vms:                  # Nombre del grupo hijo
+      hosts:                      # Hosts que pertenecen a este grupo
+        vm1:                      # Nombre del host
+          ansible_host: 192.168.56.10
+          ansible_user: vagrant
+          ansible_ssh_private_key_file: .vagrant/machines/vm1/virtualbox/private_key
+        vm2:                      # Segundo host
+          ansible_host: 192.168.56.11
+          ansible_user: vagrant
+          ansible_ssh_private_key_file: .vagrant/machines/vm2/virtualbox/private_key
+      vars:                       # Variables que se aplican a TODO el grupo
+        ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+
+
+

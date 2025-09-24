@@ -1,0 +1,37 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Instalar nginx
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+    
+    - name: Crear página simple
+      copy:
+        content: "<h1>SYP-DEV ANSIBLE + VAGRANT</h1>"
+        dest: /var/www/html/index.html
+    
+    - name: Iniciar nginx
+      service:
+        name: nginx
+        state: started
+
+
+- hosts: db
+  become: yes
+  vars:
+    mysql_root_password: "12345"
+  tasks:
+    - name: Instalar MySQL
+      apt:
+        name: mysql-server
+        state: present
+
+    - name: Iniciar servicio MySQL
+      service:
+        name: mysql
+        state: started
+        enabled: yes
+
