@@ -1,0 +1,16 @@
+---
+- name: Instalar Apache
+  apt:
+    name: apache2
+    state: present
+
+- name: Iniciar Apache
+  service:
+    name: apache2
+    state: started
+    enabled: yes
+
+- name: Crear página simple
+  copy:
+    content: "<h1>¡Hola desde Ansible con Roles!</h1><p>Rol webserver funcionando</p>"
+    dest: /var/www/html/index.html

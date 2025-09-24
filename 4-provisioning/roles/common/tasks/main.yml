@@ -1,0 +1,16 @@
+---
+- name: Actualizar paquetes
+  apt:
+    update_cache: yes
+
+- name: Crear usuario de ejemplo
+  user:
+    name: ejemplo
+    shell: /bin/bash
+    
+- name: Instalar paquetes básicos
+  apt:
+    name:
+      - curl
+      - vim
+    state: present
