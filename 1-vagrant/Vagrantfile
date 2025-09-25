@@ -9,6 +9,6 @@ Vagrant.configure("2") do |config|
     
     config.vm.provision "shell", inline: <<-SHELL
         echo "Hola desde Vagrant Provision!"
-        echo "La fecha es: $(date)"
+        mkdir -p /home/vagrant/directorio_ejemplo
     SHELL
 end

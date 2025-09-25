@@ -7,7 +7,7 @@
     # Variables simples
     mensaje_bienvenida: "¡Hola desde Ansible!"
     puerto_web: 80
-    aplicacion: "Demo-App"
+    aplicacion: "SYP-DEV"
     version: "1.0.0"
     
     # Variables de lista
@@ -30,25 +30,25 @@
     - name: Mostrar resultado del ping con variables
       debug:
         msg: |
-          ✅ {{ mensaje_bienvenida }}
-          🖥️  Servidor: {{ inventory_hostname }} ({{ ansible_host }})
-          📱 Aplicación: {{ aplicacion }} v{{ version }}
-          🌐 Puerto: {{ puerto_web }}
-          🏷️  Tipo: {{ info_servidor.tipo }}
-          🔧 Entorno: {{ info_servidor.entorno }}
+          {{ mensaje_bienvenida }}
+          Servidor: {{ inventory_hostname }} ({{ ansible_host }})
+          Aplicación: {{ aplicacion }} v{{ version }}
+          Puerto: {{ puerto_web }}
+          Tipo: {{ info_servidor.tipo }}
+          Entorno: {{ info_servidor.entorno }}
       when: ping_result is succeeded
     
     - name: Mostrar información del sistema usando facts
       debug:
         msg: |
-          💻 Sistema Operativo: {{ ansible_distribution }} {{ ansible_distribution_version }}
-          🏠 Hostname: {{ ansible_hostname }}
-          💾 Memoria Total: {{ ansible_memtotal_mb }} MB
-          💿 Espacio en disco: {{ ansible_mounts[0].size_total | human_readable }}
+          Sistema Operativo: {{ ansible_distribution }} {{ ansible_distribution_version }}
+          Hostname: {{ ansible_hostname }}
+          Memoria Total: {{ ansible_memtotal_mb }} MB
+          Espacio en disco: {{ ansible_mounts[0].size_total | human_readable }}
       when: ping_result is succeeded
     
     - name: Listar servicios requeridos
       debug:
-        msg: "🔧 Servicio requerido: {{ item }}"
+        msg: "Servicio requerido: {{ item }}"
       loop: "{{ servicios_requeridos }}"
       when: ping_result is succeeded

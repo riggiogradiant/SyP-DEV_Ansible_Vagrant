@@ -19,19 +19,25 @@
         state: started
 
 
-- hosts: db
+- hosts: all
   become: yes
-  vars:
-    mysql_root_password: "12345"
   tasks:
-    - name: Instalar MySQL
+    - name: Actualizar caché de apt
+      apt:
+        update_cache: yes
+
+    - name: Instalar MySQL server
       apt:
         name: mysql-server
         state: present
 
-    - name: Iniciar servicio MySQL
+    - name: Recoger información de servicios
+      service_facts:
+
+    - name: Iniciar MySQL si existe
       service:
         name: mysql
         state: started
         enabled: yes
+      when: "'mysql.service' in ansible_facts.services"
 

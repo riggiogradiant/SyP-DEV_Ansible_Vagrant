@@ -1,16 +1,24 @@
 ---
-- name: Instalar Apache
+- name: Instalar Nginx
   apt:
-    name: apache2
+    name: nginx
     state: present
+    update_cache: yes
 
-- name: Iniciar Apache
+- name: Iniciar Nginx
   service:
-    name: apache2
+    name: nginx
     state: started
     enabled: yes
 
 - name: Crear página simple
   copy:
-    content: "<h1>¡Hola desde Ansible con Roles!</h1><p>Rol webserver funcionando</p>"
+    content: "<h1>Ansible con roles</h1>"
     dest: /var/www/html/index.html
+
+- name: Configurar permisos del archivo
+  file:
+    path: /var/www/html/index.html
+    owner: www-data
+    group: www-data
+    mode: '0644'

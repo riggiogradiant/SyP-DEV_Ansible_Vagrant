@@ -1,6 +1,6 @@
 ---
 - name: Instalar NGINX y desplegar página personalizada
-  hosts: localhost
+  hosts: all
   become: yes
   
   roles:

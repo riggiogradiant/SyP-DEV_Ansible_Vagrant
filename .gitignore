@@ -1,0 +1,14 @@
+# Vagrant
+.vagrant/
+**/.vagrant/
+
+# Vagrant logs
+*.log
+ubuntu-bionic-18.04-cloudimg-console.log
+
+# Vagrant box metadata
+.vagrant.d/
+
+# Vagrant SSH keys
+vagrant_private_key
+.vagrant_private_key
